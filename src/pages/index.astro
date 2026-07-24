@@ -9,10 +9,11 @@ import '../styles/global.css';
 // Copy is plain, factual, first person. Dates and details are taken verbatim
 // from the CV — nothing invented.
 
+// `sub` is an array so an entry can carry more than one detail line.
 const journey = [
-  { year: '2023',      name: 'Leaving Certificate',    sub: 'Coláiste Choilm · 601 points' },
-  { year: '2023–2027', name: 'University of Galway',    sub: 'BSc Business Information Systems' },
-  { year: '2025–2026', name: 'TBS Education, Barcelona', sub: 'Double-degree exchange year' },
+  { year: '2023',      name: 'Leaving Certificate',    sub: ['Coláiste Choilm · 601 points'] },
+  { year: '2023–2027', name: 'University of Galway',    sub: ['BSc Business Information Systems'] },
+  { year: '2025–2026', name: 'TBS Education, Barcelona', sub: ['Data Science for Business Study Path', 'Double-degree exchange year'] },
   { year: '?',         name: null,                      sub: null, open: true },
 ];
 
@@ -108,7 +109,9 @@ const pipeline = ['Inbox', 'Pre-filter', 'Classify', 'KB Search', 'Action'];
                   <>
                     <div class="font-mono text-small text-text-muted tabular-nums">{s.year}</div>
                     <div class="text-h3 mt-3">{s.name}</div>
-                    <div class="text-small text-text-muted mt-1">{s.sub}</div>
+                    <div class="mt-1 space-y-0.5">
+                      {s.sub.map((l) => <div class="text-small text-text-muted">{l}</div>)}
+                    </div>
                   </>
                 )}
               </li>
@@ -184,11 +187,14 @@ const pipeline = ['Inbox', 'Pre-filter', 'Classify', 'KB Search', 'Action'];
         </div>
         <div class="py-24 pl-6 md:py-32 md:pl-12">
           <h2 class="text-display-l">Interests</h2>
-          <div class="mt-16 grid gap-6 sm:grid-cols-3">
+          <!-- 3-up at/above 900px (the site's stack breakpoint), stacked below.
+               Aspect ratio left flexible — real images will set it; frames use a
+               placeholder min-height for now. -->
+          <div class="mt-16 grid gap-6 min-[900px]:grid-cols-3">
             {interests.map((it) => (
               <figure>
                 <div
-                  class="flex aspect-[3/4] items-center justify-center rounded-[2px] border border-rule bg-surface px-4"
+                  class="flex min-h-64 items-center justify-center rounded-[2px] border border-rule bg-surface px-4"
                   aria-hidden="true"
                 >
                   <span class="label text-center" style="color: var(--color-rule)">{it.note}</span>
