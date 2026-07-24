@@ -1,0 +1,171 @@
+---
+import '../styles/global.css';
+
+// Verbatim project copy — do NOT rewrite, improve, or add adjectives (per brief).
+// Indices are stable IDs, not positional: PERSONAL is 04·05, ACADEMIC is 06.
+const groups = [
+  {
+    label: 'EUROCONTROL',
+    cards: [
+      {
+        id: '01',
+        title: 'ITSD Email Automation',
+        body: [
+          'Continuous pipeline on the ITSD shared mailbox. Every incoming email gets classified, checked against the ServiceNow knowledge base, and then answered, ticketed, or handed to a human. Each decision is logged to SharePoint and surfaced in Power BI.',
+          'The design problem was trust: cheap filters run before the agent so the expensive call only fires when it’s needed, and if the KB search wasn’t performed, confidence drops to LOW and a person takes over — regardless of how certain the model sounded.',
+        ],
+        metrics: [{ text: '25,000+ emails in production' }],
+        stack: ['Copilot Studio', 'Power Automate', 'ServiceNow', 'SharePoint', 'Power BI'],
+      },
+      {
+        id: '02',
+        title: 'Microsoft Release Intelligence',
+        body: [
+          'Microsoft ships hundreds of M365 and Azure changes a year and someone has to work out which ones matter to whom. This ingests them through a public MCP server, weighs impact against internal knowledge, scores it, and routes by priority — high-impact items through human approval, mid-tier into a weekly digest, the rest logged.',
+          'The agent classifies but never scores. Judgement is probabilistic, arithmetic is deterministic, and they don’t share a layer.',
+        ],
+        metrics: [{ text: '800+ updates processed' }, { text: '~8 hrs/week saved' }],
+        stack: ['MCP server', 'Copilot Studio', 'Power Automate', 'SharePoint'],
+      },
+      {
+        id: '03',
+        title: 'FF-ICE Flight Plan Converter',
+        body: [
+          'Flight plans are moving from the old ICAO text format to a new XML standard called FF-ICE. Both are in use during the changeover, so people need to convert between them. I built an agent in Copilot Studio where you paste the XML in and get the text format back.',
+          'The first version had the LLM reading a written rulebook to parse the XML, plus a separate flow handling the number formatting. When code execution became available I replaced all of it with one Python script. The model doesn’t touch the conversion now — it passes the XML to the script and returns what comes back.',
+        ],
+        metrics: [],
+        stack: ['Copilot Studio', 'Python', 'Agent Sandbox'],
+      },
+    ],
+  },
+  {
+    label: 'PERSONAL',
+    cards: [
+      {
+        id: '04',
+        title: 'Personal Knowledge System',
+        body: [
+          'Built an agent that takes my ramblings and notes and puts them into structured form I can actually check back on — almost an interactive journal. Stored locally in Obsidian, run through Claude Code.',
+          'I throw raw material at it, articles, notes, whatever, and it files it, links it to what’s already there, and flags anything sitting on its own with nothing pointing at it.',
+        ],
+        metrics: [],
+        stack: ['Claude Code', 'Obsidian', 'Markdown'],
+      },
+      {
+        id: '05',
+        title: 'RSS Alert Bot',
+        body: [
+          'Runs itself every day on GitHub Actions. Checks around 18 feeds across AI research, defence, aerospace and Power Platform, matches them against keyword categories I set, and sends anything relevant to my Telegram.',
+          'Plain Python, no dependencies. The first run just records what’s already there so it doesn’t dump months of old articles onto my phone at once.',
+        ],
+        metrics: [{ text: 'GitHub → github.com/hrassmnet/news-alert', href: 'https://github.com/hrassmnet/news-alert', external: true }],
+        stack: ['Python', 'GitHub Actions'],
+      },
+    ],
+  },
+  {
+    label: 'ACADEMIC',
+    cards: [
+      {
+        id: '06',
+        title: 'Healthcare Market Access',
+        body: [
+          'Hackathon case for Bayer. They’re launching a therapy across European markets where pricing rules, reimbursement decisions and approval timelines vary by country. The question was where to focus to maximise market share and sales.',
+          'Worked through 10,000 records across twelve countries — classification on reimbursement approval, regression on market share and revenue, clustering to see how the markets grouped. Access conditions decided almost everything; price barely moved adoption until reimbursement was secured. Markets split cleanly into access-constrained and access-enabled.',
+          'The recommendation was to sequence launches by access rather than market size, and price after access is won rather than before.',
+        ],
+        metrics: [{ text: 'Full analysis (PDF)', href: '/bayer-analysis.pdf' }],
+        stack: ['Python', 'pandas', 'scikit-learn', 'statsmodels'],
+      },
+    ],
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Projects — Jack Bates</title>
+    <meta name="description" content="Projects by Jack Bates — AI agents and data work at EUROCONTROL and beyond." />
+  </head>
+  <body>
+    <!-- Persistent minimal header -->
+    <header class="sticky top-0 z-10 border-b border-rule bg-bg">
+      <div class="mx-auto flex max-w-[1120px] items-baseline justify-between px-6 py-4 md:px-12">
+        <span class="label">Jack Bates — Projects</span>
+        <a href="/" class="font-mono text-small text-accent hover:underline">← Overview</a>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-[1120px] px-6 md:px-12">
+
+      {groups.map((group) => (
+        <section class="pt-24 first:pt-16">
+          <!-- Group band: mono label + the stable indices it contains -->
+          <div class="flex items-baseline justify-between border-t border-rule pt-6 pb-2">
+            <span class="label">{group.label}</span>
+            <span class="font-mono text-small text-text-muted tabular-nums">
+              {group.cards.map((c) => c.id).join(' · ')}
+            </span>
+          </div>
+
+          {group.cards.map((card) => (
+            <article class="grid grid-cols-12 gap-x-6 border-t border-rule py-16 md:py-24">
+              <!-- Reading column -->
+              <div class="col-span-12 md:col-span-7">
+                <div class="font-mono text-h2 leading-none text-text-muted tabular-nums">{card.id}</div>
+                <h3 class="text-h3 mt-4">{card.title}</h3>
+                <div class="mt-6 space-y-4 max-w-measure">
+                  {card.body.map((p) => <p class="text-body">{p}</p>)}
+                </div>
+              </div>
+
+              <!-- Schematic slot — reserved, framed, filled in slice 5 -->
+              <div class="col-span-12 mt-8 md:col-span-4 md:col-start-9 md:mt-0">
+                <div
+                  class="flex aspect-[4/3] items-center justify-center rounded-[2px] border border-rule"
+                  aria-hidden="true"
+                >
+                  <span class="label" style="color: var(--color-rule)">Schematic</span>
+                </div>
+              </div>
+
+              <!-- Readout footer: metric chips + stack -->
+              <div class="col-span-12 mt-12 border-t border-rule pt-6">
+                {card.metrics.length > 0 && (
+                  <div class="mb-4 flex flex-wrap gap-2">
+                    {card.metrics.map((m) =>
+                      m.href ? (
+                        <a
+                          href={m.href}
+                          class="inline-flex items-center rounded-[2px] bg-accent-wash px-3 py-1 font-mono text-small text-accent hover:underline"
+                          {...(m.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                        >
+                          {m.text}
+                        </a>
+                      ) : (
+                        <span class="inline-flex items-center rounded-[2px] bg-accent-wash px-3 py-1 font-mono text-small text-text">
+                          {m.text}
+                        </span>
+                      )
+                    )}
+                  </div>
+                )}
+                <p class="font-mono text-small text-text-muted">{card.stack.join(' · ')}</p>
+              </div>
+            </article>
+          ))}
+        </section>
+      ))}
+
+      <footer class="border-t border-rule py-16 md:py-24">
+        <a href="/" class="font-mono text-small text-accent hover:underline">← Overview</a>
+      </footer>
+
+    </main>
+  </body>
+</html>
