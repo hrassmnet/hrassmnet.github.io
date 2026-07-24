@@ -1,0 +1,35 @@
+---
+// 02 · Microsoft Release Intelligence. Two stacked horizontal tracks that don't
+// share a layer: a probabilistic layer above, a deterministic one below.
+// Accent = the decision: Classify (the probabilistic judgement). Score is
+// deterministic, so it stays grey.
+---
+<svg class="schematic" viewBox="0 0 300 210" role="img"
+  aria-label="A probabilistic classify layer — the decision — above a deterministic scoring layer, kept separate, then routed">
+  <text x="12" y="20">02 · Release Intel</text>
+  <text x="146" y="46" text-anchor="middle">Probabilistic</text>
+  <text x="146" y="192" text-anchor="middle">Deterministic</text>
+
+  <rect class="s-box" x="12" y="96" width="48" height="30" rx="2" />
+  <text x="36" y="115" text-anchor="middle">Updates</text>
+
+  <!-- the two layers do not share -->
+  <line class="s-line" x1="84" y1="111" x2="228" y2="111" stroke-dasharray="3 4" />
+
+  <rect class="s-box s-accent" x="86" y="58" width="120" height="34" rx="2" />
+  <text x="146" y="79" text-anchor="middle">Classify</text>
+  <rect class="s-box" x="86" y="130" width="120" height="34" rx="2" />
+  <text x="146" y="151" text-anchor="middle">Score</text>
+
+  <polyline class="s-line" points="60,111 76,111" />
+  <polyline class="s-line" points="76,111 76,75 86,75" />
+  <polyline class="s-line" points="76,111 76,147 86,147" />
+  <polyline class="s-line" points="80,71 86,75 80,79" />
+  <polyline class="s-line" points="80,143 86,147 80,151" />
+
+  <polyline class="s-line" points="206,75 224,75 224,111 238,111" />
+  <polyline class="s-line" points="206,147 224,147 224,111" />
+  <polyline class="s-line" points="232,107 238,111 232,115" />
+  <rect class="s-box" x="238" y="94" width="54" height="34" rx="2" />
+  <text x="265" y="115" text-anchor="middle">Route</text>
+</svg>
