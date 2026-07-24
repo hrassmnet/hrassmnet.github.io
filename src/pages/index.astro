@@ -28,12 +28,15 @@ const achievements = [
 ];
 
 // Triptych — word + image only (Design.md §06). Identical treatment across
-// all three; `note` is placeholder guidance shown in the empty frame until
-// the real images land. No prose, no node strips.
+// all three: same 1:1 frame, same hairline border, same mono label. Images
+// are 1000×1000 monochrome, served from public/images.
 const interests = [
-  { label: 'History',     note: 'WW1 / early-20th-c. archive' },
-  { label: 'Cybernetics', note: 'Mechanical / systems' },
-  { label: 'Philosophy',  note: 'Creation of Adam · detail' },
+  { label: 'History',     src: '/images/history.jpg',
+    alt: 'The Augustus of Prima Porta — a Roman marble statue of the emperor Augustus, one arm raised.' },
+  { label: 'Cybernetics', src: '/images/cybernetics.jpg',
+    alt: 'A mid-twentieth-century analogue computer control room, banks of dials and switches.' },
+  { label: 'Philosophy',  src: '/images/philosophy.jpg',
+    alt: "The Creation of Adam — the detail of God's and Adam's hands almost touching." },
 ];
 
 const contact = [
@@ -187,17 +190,19 @@ const pipeline = ['Inbox', 'Pre-filter', 'Classify', 'KB Search', 'Action'];
         </div>
         <div class="py-24 pl-6 md:py-32 md:pl-12">
           <h2 class="text-display-l">Interests</h2>
-          <!-- 3-up at/above 900px (the site's stack breakpoint), stacked below.
-               Aspect ratio left flexible — real images will set it; frames use a
-               placeholder min-height for now. -->
+          <!-- 3-up at/above 900px (the site's stack breakpoint), stacked below. -->
           <div class="mt-16 grid gap-6 min-[900px]:grid-cols-3">
             {interests.map((it) => (
               <figure>
-                <div
-                  class="flex min-h-64 items-center justify-center rounded-[2px] border border-rule bg-surface px-4"
-                  aria-hidden="true"
-                >
-                  <span class="label text-center" style="color: var(--color-rule)">{it.note}</span>
+                <div class="aspect-square overflow-hidden rounded-[2px] border border-rule bg-surface">
+                  <img
+                    src={it.src}
+                    alt={it.alt}
+                    width="1000"
+                    height="1000"
+                    loading="lazy"
+                    class="h-full w-full object-cover"
+                  />
                 </div>
                 <figcaption class="label mt-4">{it.label}</figcaption>
               </figure>
