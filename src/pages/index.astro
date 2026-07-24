@@ -1,33 +1,49 @@
 ---
 import '../styles/global.css';
 
-// Type scale — mirrors the tokens in global.css. `label` is rendered separately
-// because it also needs mono + uppercase, which a size utility can't carry.
-const type = [
-  { cls: 'text-display-xl', name: 'display-xl', specs: '4.5rem · lh 1.02 · -0.03em · 700', use: 'hero name', sample: 'Jack Bates' },
-  { cls: 'text-display-l',  name: 'display-l',  specs: '3rem · lh 1.08 · -0.02em · 700', use: 'panel headings', sample: 'Business Information Systems' },
-  { cls: 'text-h2',         name: 'h2',         specs: '2rem · lh 1.15 · -0.01em · 600', use: 'section headings', sample: 'Experience & Projects' },
-  { cls: 'text-h3',         name: 'h3',         specs: '1.375rem · lh 1.3 · 600',        use: 'card titles', sample: 'ITSD Email Automation' },
-  { cls: 'text-body',       name: 'body',       specs: '1.0625rem · lh 1.6 · 400',       use: 'prose · max 68ch', sample: 'Continuous pipeline on the ITSD shared mailbox. Every incoming email gets classified, checked against the ServiceNow knowledge base, and then answered, ticketed, or handed to a human. Each decision is logged to SharePoint and surfaced in Power BI.' },
-  { cls: 'text-small',      name: 'small',      specs: '0.9375rem · lh 1.5 · 400',       use: 'captions, secondary', sample: 'Judgement is probabilistic, arithmetic is deterministic, and they don’t share a layer.' },
+// Overview — slice 3. All seven panels laid out VERTICALLY (no horizontal
+// behaviour, no motion, no schematics yet). Composition: "instrument rail" —
+// every panel shares a narrow mono spine (index + vertical label) separated
+// from a wide, structurally-varied content field by a single hairline.
+//
+// Copy is plain, factual, first person. Dates and details are taken verbatim
+// from the CV — nothing invented.
+
+const journey = [
+  { year: '2023',      name: 'Leaving Certificate',    sub: 'Coláiste Choilm · 601 points' },
+  { year: '2023–2027', name: 'University of Galway',    sub: 'BSc Business Information Systems' },
+  { year: '2025–2026', name: 'TBS Education, Barcelona', sub: 'Double-degree exchange year' },
+  { year: '?',         name: null,                      sub: null, open: true },
 ];
 
-const colour = [
-  { token: '--bg',          tw: 'bg-bg',          value: '#FAFAF9',            role: 'page background' },
-  { token: '--surface',     tw: 'bg-surface',     value: '#FFFFFF',            role: 'cards, raised panels' },
-  { token: '--text',        tw: 'bg-text',        value: '#0A0A0B',            role: 'primary text' },
-  { token: '--text-muted',  tw: 'bg-text-muted',  value: '#6B6B72',            role: 'secondary, captions' },
-  { token: '--rule',        tw: 'bg-rule',        value: '#E4E4E7',            role: 'hairlines, borders' },
-  { token: '--accent',      tw: 'bg-accent',      value: '#0866FF',            role: 'links, active states' },
-  { token: '--accent-soft', tw: 'bg-accent-soft', value: '#4A9EFF',            role: 'gradient endpoint only' },
-  { token: '--accent-wash', tw: 'bg-accent-wash', value: 'rgba(8,102,255,.06)', role: 'subtle fills, hover' },
+const achievements = [
+  { title: 'ISO 8000 Master Data Quality Manager',      by: 'ECCMA' },
+  { title: 'Model Context Protocol',                    by: 'Anthropic' },
+  { title: 'AI Fluency',                                by: 'Anthropic' },
+  { title: 'Claude 101',                                by: 'Anthropic' },
+  { title: 'Enhance agents with autonomous capabilities', by: 'Microsoft Applied Skills' },
+  { title: 'First Class Honours',                       by: 'Y1 71% · Y2 75%' },
+  { title: 'Academic Scholarship',                      by: 'Y1 & Y2' },
 ];
 
-const spacing = [
-  { px: 4, tw: '1' }, { px: 8, tw: '2' }, { px: 12, tw: '3' }, { px: 16, tw: '4' },
-  { px: 24, tw: '6' }, { px: 32, tw: '8' }, { px: 48, tw: '12' }, { px: 64, tw: '16' },
-  { px: 96, tw: '24' }, { px: 128, tw: '32' }, { px: 192, tw: '48' },
+// Triptych — word + image only (Design.md §06). Identical treatment across
+// all three; `note` is placeholder guidance shown in the empty frame until
+// the real images land. No prose, no node strips.
+const interests = [
+  { label: 'History',     note: 'WW1 / early-20th-c. archive' },
+  { label: 'Cybernetics', note: 'Mechanical / systems' },
+  { label: 'Philosophy',  note: 'Creation of Adam · detail' },
 ];
+
+const contact = [
+  { k: 'Email',  v: 'jack.don.bates@gmail.com', href: 'mailto:jack.don.bates@gmail.com' },
+  { k: 'GitHub', v: 'github.com/hrassmnet',      href: 'https://github.com/hrassmnet', ext: true },
+  { k: 'CV',     v: 'cv.pdf',                    href: '/cv.pdf', download: true },
+];
+
+// The ITSD email pipeline. Rendered here as a plain mono readout; the live
+// self-pulsing SVG that replaces it is slice 05.
+const pipeline = ['Inbox', 'Pre-filter', 'Classify', 'KB Search', 'Action'];
 ---
 
 <html lang="en">
@@ -36,110 +52,186 @@ const spacing = [
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="robots" content="noindex" />
-    <title>Design System — Foundations</title>
+    <title>Jack Bates</title>
+    <meta
+      name="description"
+      content="Jack Bates — Business Information Systems, University of Galway. AI agents and data work at EUROCONTROL."
+    />
   </head>
   <body>
-    <main class="mx-auto max-w-[1120px] px-6 py-16 md:px-12 md:py-24">
+    <main class="mx-auto max-w-[1120px] px-6 md:px-12">
 
-      <!-- Masthead -->
-      <header class="mb-24">
-        <p class="label mb-6">hrassmnet · design system</p>
-        <h1 class="text-display-l">Foundations</h1>
-        <p class="text-body text-text-muted mt-6 max-w-measure">
-          Slice 01 — fonts, colour tokens, the type scale and the spacing scale.
-          Every value used anywhere on the site lives here and nowhere else.
-          Nothing gets built on top until these are approved.
-        </p>
-      </header>
-      <!-- (prose measure demonstrated below is max-w-measure = 68ch) -->
-
-      <!-- 01 · Typography -->
-      <section>
-        <div class="flex items-baseline gap-4 border-t border-rule pt-8 mb-16">
-          <span class="font-mono text-small text-accent tabular-nums">01</span>
-          <span class="label">Typography</span>
-          <span class="label ml-auto normal-case tracking-normal">Space Grotesk · JetBrains Mono</span>
+      <!-- 01 · HERO ------------------------------------------------------ -->
+      <section class="grid min-h-screen grid-cols-[64px_1fr] md:grid-cols-[128px_1fr]">
+        <div class="flex flex-col items-center gap-6 border-r border-rule pt-24 md:pt-32">
+          <span class="font-mono text-h2 leading-none text-text-muted tabular-nums">01</span>
+          <span class="label [writing-mode:vertical-rl]">Identity</span>
         </div>
+        <div class="flex flex-col justify-center py-24 pl-6 md:py-32 md:pl-12">
+          <h1 class="text-display-xl">Jack Bates</h1>
+          <p class="text-h3 text-text-muted mt-6 max-w-measure">
+            Business Information Systems — University of Galway
+          </p>
 
-        <div class="space-y-16">
-          {type.map((t) => (
-            <div class="grid gap-x-12 gap-y-4 md:grid-cols-[220px_1fr]">
-              <div class="font-mono text-small text-text-muted leading-relaxed">
-                <div class="text-text">{t.name}</div>
-                <div class="mt-1">{t.specs}</div>
-                <div class="mt-1 text-accent">{t.use}</div>
-              </div>
-              <div class={t.cls + ' min-w-0 ' + (t.name === 'body' ? 'max-w-measure text-text' : 'text-text')}>
-                {t.sample}
-              </div>
-            </div>
-          ))}
-
-          <!-- label: mono + uppercase, its own beast -->
-          <div class="grid gap-x-12 gap-y-4 md:grid-cols-[220px_1fr]">
-            <div class="font-mono text-small text-text-muted leading-relaxed">
-              <div class="text-text">label</div>
-              <div class="mt-1">0.75rem · lh 1 · 0.08em · 500</div>
-              <div class="mt-1 text-accent">mono · uppercase · labels, years, tags</div>
-            </div>
-            <div class="min-w-0">
-              <span class="label">Network Management · 2026</span>
+          <div class="mt-16">
+            <p class="label mb-4">ITSD Pipeline</p>
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-3 rounded-[2px] border border-rule px-6 py-5">
+              {pipeline.map((n, i) => (
+                <>
+                  <span class="font-mono text-small uppercase tracking-wide text-text">{n}</span>
+                  {i < pipeline.length - 1 && (
+                    <span class="font-mono text-small text-text-muted" aria-hidden="true">→</span>
+                  )}
+                </>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 02 · Colour -->
-      <section class="mt-24">
-        <div class="flex items-baseline gap-4 border-t border-rule pt-8 mb-16">
-          <span class="font-mono text-small text-accent tabular-nums">02</span>
-          <span class="label">Colour</span>
-          <span class="label ml-auto normal-case tracking-normal">Bright canvas · no dark mode</span>
+      <!-- 02 · JOURNEY --------------------------------------------------- -->
+      <section class="grid grid-cols-[64px_1fr] border-t border-rule md:grid-cols-[128px_1fr]">
+        <div class="flex flex-col items-center gap-6 border-r border-rule pt-24 md:pt-32">
+          <span class="font-mono text-h2 leading-none text-text-muted tabular-nums">02</span>
+          <span class="label [writing-mode:vertical-rl]">Journey</span>
         </div>
+        <div class="py-24 pl-6 md:py-32 md:pl-12">
+          <h2 class="text-display-l">The route so far</h2>
 
-        <div class="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-4">
-          {colour.map((c) => (
-            <div>
-              <div class={c.tw + ' h-24 rounded-[2px] border border-rule'}></div>
-              <div class="mt-3 font-mono text-small leading-relaxed">
-                <div class="text-text">{c.token}</div>
-                <div class="mt-1 text-text-muted">{c.value}</div>
-                <div class="mt-1 text-text-muted">{c.role}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <!-- 03 · Spacing -->
-      <section class="mt-24">
-        <div class="flex items-baseline gap-4 border-t border-rule pt-8 mb-16">
-          <span class="font-mono text-small text-accent tabular-nums">03</span>
-          <span class="label">Spacing</span>
-          <span class="label ml-auto normal-case tracking-normal">4px base · the only permitted steps</span>
-        </div>
-
-        <div class="space-y-4">
-          {spacing.map((s) => (
-            <div class="flex items-center gap-6">
-              <div class="w-44 shrink-0 font-mono text-small text-text-muted tabular-nums">
-                <span class="text-text">{s.px}px</span> · space-{s.tw}
-              </div>
-              <div class="h-3 rounded-[1px] bg-text" style={`width:${s.px}px`}></div>
-            </div>
-          ))}
+          <ol class="mt-16 grid gap-y-12 md:grid-cols-4 md:gap-x-6">
+            {journey.map((s) => (
+              <li class="relative border-t border-rule pt-6">
+                <span class={`absolute -top-[3px] left-0 block h-[5px] w-[5px] rounded-full ${s.open ? 'bg-accent' : 'bg-text'}`} aria-hidden="true"></span>
+                {s.open ? (
+                  <span class="font-mono text-display-l leading-none text-accent" aria-label="the future is open">?</span>
+                ) : (
+                  <>
+                    <div class="font-mono text-small text-text-muted tabular-nums">{s.year}</div>
+                    <div class="text-h3 mt-3">{s.name}</div>
+                    <div class="text-small text-text-muted mt-1">{s.sub}</div>
+                  </>
+                )}
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      <!-- Footer note -->
-      <footer class="mt-24 border-t border-rule pt-8">
-        <p class="font-mono text-small text-text-muted leading-relaxed max-w-measure">
-          Fonts self-hosted via Fontsource (variable woff2, latin subset).
-          No dark mode, no toggle, no colour or size outside this file.
-          This page is a reference only — <span class="text-text">noindex</span>, replaced when the real pages land.
-        </p>
-      </footer>
+      <!-- 03 · EXPERIENCE ------------------------------------------------ -->
+      <section class="grid grid-cols-[64px_1fr] border-t border-rule md:grid-cols-[128px_1fr]">
+        <div class="flex flex-col items-center gap-6 border-r border-rule pt-24 md:pt-32">
+          <span class="font-mono text-h2 leading-none text-text-muted tabular-nums">03</span>
+          <span class="label [writing-mode:vertical-rl]">Experience</span>
+        </div>
+        <div class="py-24 pl-6 md:py-32 md:pl-12">
+          <div class="flex flex-wrap items-baseline justify-between gap-4">
+            <span class="label">EUROCONTROL · Brussels</span>
+            <span class="font-mono text-small text-text-muted">Apr–Aug 2026</span>
+          </div>
+          <h2 class="text-display-l mt-8">Power Platform &amp; AI Solutions Engineer</h2>
+          <p class="text-h2 text-text mt-10 max-w-measure">
+            On the Skyline traineeship I designed and shipped a suite of AI agents for
+            EUROCONTROL's Network Management Directorate, built on custom MCP connectors and tools.
+          </p>
+        </div>
+      </section>
+
+      <!-- 04 · PROJECTS DOOR --------------------------------------------- -->
+      <section class="grid min-h-screen grid-cols-[64px_1fr] border-t border-rule md:grid-cols-[128px_1fr]">
+        <div class="flex flex-col items-center gap-6 border-r border-rule pt-24 md:pt-32">
+          <span class="font-mono text-h2 leading-none text-text-muted tabular-nums">04</span>
+          <span class="label [writing-mode:vertical-rl]">Projects</span>
+        </div>
+        <div class="flex flex-col justify-center py-24 pl-6 md:py-32 md:pl-12">
+          <span class="label">The substance</span>
+          <a
+            href="/projects"
+            class="group mt-6 inline-flex items-baseline gap-6 text-display-xl text-text transition-colors hover:text-accent"
+          >
+            Projects
+            <span class="text-display-l text-accent transition-transform group-hover:translate-x-2" aria-hidden="true">→</span>
+          </a>
+          <p class="font-mono text-small text-text-muted mt-8">
+            06 cards · EUROCONTROL / PERSONAL / ACADEMIC
+          </p>
+        </div>
+      </section>
+
+      <!-- 05 · ACHIEVEMENTS ---------------------------------------------- -->
+      <section class="grid grid-cols-[64px_1fr] border-t border-rule md:grid-cols-[128px_1fr]">
+        <div class="flex flex-col items-center gap-6 border-r border-rule pt-24 md:pt-32">
+          <span class="font-mono text-h2 leading-none text-text-muted tabular-nums">05</span>
+          <span class="label [writing-mode:vertical-rl]">Achievements</span>
+        </div>
+        <div class="py-24 pl-6 md:py-32 md:pl-12">
+          <h2 class="text-display-l">Supporting evidence</h2>
+          <dl class="mt-16 max-w-measure border-b border-rule">
+            {achievements.map((a) => (
+              <div class="flex items-baseline justify-between gap-6 border-t border-rule py-4">
+                <dt class="font-mono text-small text-text">{a.title}</dt>
+                <dd class="font-mono text-small text-text-muted text-right">{a.by}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <!-- 06 · INTERESTS ------------------------------------------------- -->
+      <section class="grid grid-cols-[64px_1fr] border-t border-rule md:grid-cols-[128px_1fr]">
+        <div class="flex flex-col items-center gap-6 border-r border-rule pt-24 md:pt-32">
+          <span class="font-mono text-h2 leading-none text-text-muted tabular-nums">06</span>
+          <span class="label [writing-mode:vertical-rl]">Interests</span>
+        </div>
+        <div class="py-24 pl-6 md:py-32 md:pl-12">
+          <h2 class="text-display-l">Interests</h2>
+          <div class="mt-16 grid gap-6 sm:grid-cols-3">
+            {interests.map((it) => (
+              <figure>
+                <div
+                  class="flex aspect-[3/4] items-center justify-center rounded-[2px] border border-rule bg-surface px-4"
+                  aria-hidden="true"
+                >
+                  <span class="label text-center" style="color: var(--color-rule)">{it.note}</span>
+                </div>
+                <figcaption class="label mt-4">{it.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 · CONTACT / FOOTER ------------------------------------------ -->
+      <section class="grid grid-cols-[64px_1fr] border-t border-rule md:grid-cols-[128px_1fr]">
+        <div class="flex flex-col items-center gap-6 border-r border-rule pt-24 md:pt-32">
+          <span class="font-mono text-h2 leading-none text-text-muted tabular-nums">07</span>
+          <span class="label [writing-mode:vertical-rl]">Contact</span>
+        </div>
+        <div class="py-24 pl-6 md:py-32 md:pl-12">
+          <h2 class="text-display-l">Get in touch</h2>
+
+          <dl class="mt-16 max-w-measure border-b border-rule">
+            {contact.map((c) => (
+              <div class="flex items-baseline justify-between gap-6 border-t border-rule py-5">
+                <dt class="label">{c.k}</dt>
+                <dd>
+                  <a
+                    href={c.href}
+                    class="font-mono text-small text-accent hover:underline"
+                    {...(c.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    {...(c.download ? { download: true } : {})}
+                  >
+                    {c.v}
+                  </a>
+                </dd>
+              </div>
+            ))}
+          </dl>
+
+          <p class="text-h2 mt-24 max-w-measure text-text">
+            Change is inevitable. Progress isn't. What separates them is what we manage to build.
+          </p>
+        </div>
+      </section>
 
     </main>
   </body>
