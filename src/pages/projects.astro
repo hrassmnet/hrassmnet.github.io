@@ -1,8 +1,19 @@
 ---
 import '../styles/global.css';
+import Seo from '../components/Seo.astro';
+import Sch01 from '../components/schematics/Sch01.astro';
+import Sch02 from '../components/schematics/Sch02.astro';
+import Sch03 from '../components/schematics/Sch03.astro';
+import Sch04 from '../components/schematics/Sch04.astro';
+import Sch05 from '../components/schematics/Sch05.astro';
+import Sch06 from '../components/schematics/Sch06.astro';
+
+// card id → its schematic component
+const schematics = { '01': Sch01, '02': Sch02, '03': Sch03, '04': Sch04, '05': Sch05, '06': Sch06 };
 
 // Verbatim project copy — do NOT rewrite, improve, or add adjectives (per brief).
-// Indices are stable IDs, not positional: PERSONAL is 04·05, ACADEMIC is 06.
+// Indices are stable IDs, not positional (Design.md §6): EUROCONTROL 01·02·03,
+// PERSONAL 04·06, ACADEMIC 05.
 const groups = [
   {
     label: 'EUROCONTROL',
@@ -53,7 +64,7 @@ const groups = [
         stack: ['Claude Code', 'Obsidian', 'Markdown'],
       },
       {
-        id: '05',
+        id: '06',
         title: 'RSS Alert Bot',
         body: [
           'Runs itself every day on GitHub Actions. Checks around 18 feeds across AI research, defence, aerospace and Power Platform, matches them against keyword categories I set, and sends anything relevant to my Telegram.',
@@ -68,7 +79,7 @@ const groups = [
     label: 'ACADEMIC',
     cards: [
       {
-        id: '06',
+        id: '05',
         title: 'Healthcare Market Access',
         body: [
           'Hackathon case for Bayer. They’re launching a therapy across European markets where pricing rules, reimbursement decisions and approval timelines vary by country. The question was where to focus to maximise market share and sales.',
@@ -85,12 +96,16 @@ const groups = [
 
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Projects — Jack Bates</title>
-    <meta name="description" content="Projects by Jack Bates — AI agents and data work at EUROCONTROL and beyond." />
+    <Seo
+      title="Projects — Jack Bates"
+      description="Projects by Jack Bates — AI agents and data work at EUROCONTROL and beyond."
+    />
+    <!-- Gate entrance motion pre-paint so cards start hidden only when JS is on
+         AND motion is welcome — no flash, and no hidden content without JS. -->
+    <script is:inline>
+      if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches)
+        document.documentElement.classList.add('anim');
+    </script>
   </head>
   <body>
     <!-- Persistent minimal header -->
@@ -113,8 +128,10 @@ const groups = [
             </span>
           </div>
 
-          {group.cards.map((card) => (
-            <article class="grid grid-cols-12 gap-x-6 border-t border-rule py-16 md:py-24">
+          {group.cards.map((card) => {
+            const Schematic = schematics[card.id];
+            return (
+            <article class="reveal grid grid-cols-12 gap-x-6 border-t border-rule py-16 md:py-24">
               <!-- Reading column -->
               <div class="col-span-12 md:col-span-7">
                 <div class="font-mono text-h2 leading-none text-text-muted tabular-nums">{card.id}</div>
@@ -124,13 +141,10 @@ const groups = [
                 </div>
               </div>
 
-              <!-- Schematic slot — reserved, framed, filled in slice 5 -->
+              <!-- Schematic (Design.md §4) -->
               <div class="col-span-12 mt-8 md:col-span-4 md:col-start-9 md:mt-0">
-                <div
-                  class="flex aspect-[4/3] items-center justify-center rounded-[2px] border border-rule"
-                  aria-hidden="true"
-                >
-                  <span class="label" style="color: var(--color-rule)">Schematic</span>
+                <div class="rounded-[2px] border border-rule p-4">
+                  <Schematic />
                 </div>
               </div>
 
@@ -158,7 +172,8 @@ const groups = [
                 <p class="font-mono text-small text-text-muted">{card.stack.join(' · ')}</p>
               </div>
             </article>
-          ))}
+            );
+          })}
         </section>
       ))}
 
@@ -167,5 +182,25 @@ const groups = [
       </footer>
 
     </main>
+
+    <!-- Entrance motion (Design.md §3.6). Dependency-free, not GSAP (which is
+         reserved for the /-only horizontal island). Progressive: only runs when
+         motion is welcome; content is visible without JS. -->
+    <script>
+      const items = document.querySelectorAll('.reveal');
+      if (document.documentElement.classList.contains('anim') && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries, obs) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-visible');
+              obs.unobserve(e.target);
+            }
+          }
+        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+        items.forEach((el) => io.observe(el));
+      } else {
+        items.forEach((el) => el.classList.add('is-visible'));
+      }
+    </script>
   </body>
 </html>
