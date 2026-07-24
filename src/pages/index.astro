@@ -1,16 +1,146 @@
 ---
 import '../styles/global.css';
+
+// Type scale — mirrors the tokens in global.css. `label` is rendered separately
+// because it also needs mono + uppercase, which a size utility can't carry.
+const type = [
+  { cls: 'text-display-xl', name: 'display-xl', specs: '4.5rem · lh 1.02 · -0.03em · 700', use: 'hero name', sample: 'Jack Bates' },
+  { cls: 'text-display-l',  name: 'display-l',  specs: '3rem · lh 1.08 · -0.02em · 700', use: 'panel headings', sample: 'Business Information Systems' },
+  { cls: 'text-h2',         name: 'h2',         specs: '2rem · lh 1.15 · -0.01em · 600', use: 'section headings', sample: 'Experience & Projects' },
+  { cls: 'text-h3',         name: 'h3',         specs: '1.375rem · lh 1.3 · 600',        use: 'card titles', sample: 'ITSD Email Automation' },
+  { cls: 'text-body',       name: 'body',       specs: '1.0625rem · lh 1.6 · 400',       use: 'prose · max 68ch', sample: 'Continuous pipeline on the ITSD shared mailbox. Every incoming email gets classified, checked against the ServiceNow knowledge base, and then answered, ticketed, or handed to a human. Each decision is logged to SharePoint and surfaced in Power BI.' },
+  { cls: 'text-small',      name: 'small',      specs: '0.9375rem · lh 1.5 · 400',       use: 'captions, secondary', sample: 'Judgement is probabilistic, arithmetic is deterministic, and they don’t share a layer.' },
+];
+
+const colour = [
+  { token: '--bg',          tw: 'bg-bg',          value: '#FAFAF9',            role: 'page background' },
+  { token: '--surface',     tw: 'bg-surface',     value: '#FFFFFF',            role: 'cards, raised panels' },
+  { token: '--text',        tw: 'bg-text',        value: '#0A0A0B',            role: 'primary text' },
+  { token: '--text-muted',  tw: 'bg-text-muted',  value: '#6B6B72',            role: 'secondary, captions' },
+  { token: '--rule',        tw: 'bg-rule',        value: '#E4E4E7',            role: 'hairlines, borders' },
+  { token: '--accent',      tw: 'bg-accent',      value: '#0866FF',            role: 'links, active states' },
+  { token: '--accent-soft', tw: 'bg-accent-soft', value: '#4A9EFF',            role: 'gradient endpoint only' },
+  { token: '--accent-wash', tw: 'bg-accent-wash', value: 'rgba(8,102,255,.06)', role: 'subtle fills, hover' },
+];
+
+const spacing = [
+  { px: 4, tw: '1' }, { px: 8, tw: '2' }, { px: 12, tw: '3' }, { px: 16, tw: '4' },
+  { px: 24, tw: '6' }, { px: 32, tw: '8' }, { px: 48, tw: '12' }, { px: 64, tw: '16' },
+  { px: 96, tw: '24' }, { px: 128, tw: '32' }, { px: 192, tw: '48' },
+];
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Jack Bates</title>
-	</head>
-	<body>
-		<h1>Jack Bates</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="noindex" />
+    <title>Design System — Foundations</title>
+  </head>
+  <body>
+    <main class="mx-auto max-w-[1120px] px-6 py-16 md:px-12 md:py-24">
+
+      <!-- Masthead -->
+      <header class="mb-24">
+        <p class="label mb-6">hrassmnet · design system</p>
+        <h1 class="text-display-l">Foundations</h1>
+        <p class="text-body text-text-muted mt-6 max-w-measure">
+          Slice 01 — fonts, colour tokens, the type scale and the spacing scale.
+          Every value used anywhere on the site lives here and nowhere else.
+          Nothing gets built on top until these are approved.
+        </p>
+      </header>
+      <!-- (prose measure demonstrated below is max-w-measure = 68ch) -->
+
+      <!-- 01 · Typography -->
+      <section>
+        <div class="flex items-baseline gap-4 border-t border-rule pt-8 mb-16">
+          <span class="font-mono text-small text-accent tabular-nums">01</span>
+          <span class="label">Typography</span>
+          <span class="label ml-auto normal-case tracking-normal">Space Grotesk · JetBrains Mono</span>
+        </div>
+
+        <div class="space-y-16">
+          {type.map((t) => (
+            <div class="grid gap-x-12 gap-y-4 md:grid-cols-[220px_1fr]">
+              <div class="font-mono text-small text-text-muted leading-relaxed">
+                <div class="text-text">{t.name}</div>
+                <div class="mt-1">{t.specs}</div>
+                <div class="mt-1 text-accent">{t.use}</div>
+              </div>
+              <div class={t.cls + ' min-w-0 ' + (t.name === 'body' ? 'max-w-measure text-text' : 'text-text')}>
+                {t.sample}
+              </div>
+            </div>
+          ))}
+
+          <!-- label: mono + uppercase, its own beast -->
+          <div class="grid gap-x-12 gap-y-4 md:grid-cols-[220px_1fr]">
+            <div class="font-mono text-small text-text-muted leading-relaxed">
+              <div class="text-text">label</div>
+              <div class="mt-1">0.75rem · lh 1 · 0.08em · 500</div>
+              <div class="mt-1 text-accent">mono · uppercase · labels, years, tags</div>
+            </div>
+            <div class="min-w-0">
+              <span class="label">Network Management · 2026</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 · Colour -->
+      <section class="mt-24">
+        <div class="flex items-baseline gap-4 border-t border-rule pt-8 mb-16">
+          <span class="font-mono text-small text-accent tabular-nums">02</span>
+          <span class="label">Colour</span>
+          <span class="label ml-auto normal-case tracking-normal">Bright canvas · no dark mode</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-4">
+          {colour.map((c) => (
+            <div>
+              <div class={c.tw + ' h-24 rounded-[2px] border border-rule'}></div>
+              <div class="mt-3 font-mono text-small leading-relaxed">
+                <div class="text-text">{c.token}</div>
+                <div class="mt-1 text-text-muted">{c.value}</div>
+                <div class="mt-1 text-text-muted">{c.role}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- 03 · Spacing -->
+      <section class="mt-24">
+        <div class="flex items-baseline gap-4 border-t border-rule pt-8 mb-16">
+          <span class="font-mono text-small text-accent tabular-nums">03</span>
+          <span class="label">Spacing</span>
+          <span class="label ml-auto normal-case tracking-normal">4px base · the only permitted steps</span>
+        </div>
+
+        <div class="space-y-4">
+          {spacing.map((s) => (
+            <div class="flex items-center gap-6">
+              <div class="w-44 shrink-0 font-mono text-small text-text-muted tabular-nums">
+                <span class="text-text">{s.px}px</span> · space-{s.tw}
+              </div>
+              <div class="h-3 rounded-[1px] bg-text" style={`width:${s.px}px`}></div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Footer note -->
+      <footer class="mt-24 border-t border-rule pt-8">
+        <p class="font-mono text-small text-text-muted leading-relaxed max-w-measure">
+          Fonts self-hosted via Fontsource (variable woff2, latin subset).
+          No dark mode, no toggle, no colour or size outside this file.
+          This page is a reference only — <span class="text-text">noindex</span>, replaced when the real pages land.
+        </p>
+      </footer>
+
+    </main>
+  </body>
 </html>
