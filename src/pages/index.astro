@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Seo from '../components/Seo.astro';
 
 // Overview — slice 3. All seven panels laid out VERTICALLY (no horizontal
 // behaviour, no motion, no schematics yet). Composition: "instrument rail" —
@@ -31,11 +32,11 @@ const achievements = [
 // all three: same 1:1 frame, same hairline border, same mono label. Images
 // are 1000×1000 monochrome, served from public/images.
 const interests = [
-  { label: 'History',     src: '/images/history.jpg',
+  { label: 'History',     src: '/images/history.webp',
     alt: 'The Augustus of Prima Porta — a Roman marble statue of the emperor Augustus, one arm raised.' },
-  { label: 'Cybernetics', src: '/images/cybernetics.jpg',
+  { label: 'Cybernetics', src: '/images/cybernetics.webp',
     alt: 'A mid-twentieth-century analogue computer control room, banks of dials and switches.' },
-  { label: 'Philosophy',  src: '/images/philosophy.jpg',
+  { label: 'Philosophy',  src: '/images/philosophy.webp',
     alt: "The Creation of Adam — the detail of God's and Adam's hands almost touching." },
 ];
 
@@ -45,21 +46,13 @@ const contact = [
   { k: 'CV',     v: 'cv.pdf',                    href: '/cv.pdf', download: true },
 ];
 
-// The ITSD email pipeline. Rendered here as a plain mono readout; the live
-// self-pulsing SVG that replaces it is slice 05.
-const pipeline = ['Inbox', 'Pre-filter', 'Classify', 'KB Search', 'Action'];
 ---
 
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Jack Bates</title>
-    <meta
-      name="description"
-      content="Jack Bates — Business Information Systems, University of Galway. AI agents and data work at EUROCONTROL."
+    <Seo
+      title="Jack Bates"
+      description="Jack Bates — Business Information Systems, University of Galway. AI agents and data work at EUROCONTROL."
     />
   </head>
   <body>
@@ -72,24 +65,10 @@ const pipeline = ['Inbox', 'Pre-filter', 'Classify', 'KB Search', 'Action'];
           <span class="label [writing-mode:vertical-rl]">Identity</span>
         </div>
         <div class="flex flex-col justify-center py-24 pl-6 md:py-32 md:pl-12">
-          <h1 class="text-display-xl">Jack Bates</h1>
-          <p class="text-h3 text-text-muted mt-6 max-w-measure">
+          <h1 class="text-display-l">Jack Bates</h1>
+          <p class="mt-6 font-mono text-small text-text-muted">
             Business Information Systems — University of Galway
           </p>
-
-          <div class="mt-16">
-            <p class="label mb-4">ITSD Pipeline</p>
-            <div class="flex flex-wrap items-center gap-x-3 gap-y-3 rounded-[2px] border border-rule px-6 py-5">
-              {pipeline.map((n, i) => (
-                <>
-                  <span class="font-mono text-small uppercase tracking-wide text-text">{n}</span>
-                  {i < pipeline.length - 1 && (
-                    <span class="font-mono text-small text-text-muted" aria-hidden="true">→</span>
-                  )}
-                </>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
@@ -201,6 +180,7 @@ const pipeline = ['Inbox', 'Pre-filter', 'Classify', 'KB Search', 'Action'];
                     width="1000"
                     height="1000"
                     loading="lazy"
+                    decoding="async"
                     class="h-full w-full object-cover"
                   />
                 </div>
@@ -238,7 +218,7 @@ const pipeline = ['Inbox', 'Pre-filter', 'Classify', 'KB Search', 'Action'];
             ))}
           </dl>
 
-          <p class="text-h2 mt-24 max-w-measure text-text">
+          <p class="text-body mt-24 max-w-measure text-text-muted">
             Change is inevitable. Progress isn't. What separates them is what we manage to build.
           </p>
         </div>
