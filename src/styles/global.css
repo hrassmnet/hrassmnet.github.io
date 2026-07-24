@@ -97,3 +97,67 @@
     color: var(--color-text-muted);
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Schematics (Design.md §4). One shared vocabulary so all diagrams read as a
+   family: 1.5px strokes in --rule, mono 10px uppercase labels in --text-muted,
+   exactly one --accent element per diagram, no fills but --accent-wash.
+--------------------------------------------------------------------------- */
+@layer components {
+  .schematic {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  /* Strokes: boxes/nodes carry a surface fill, free lines don't. */
+  .schematic .s-line { fill: none; stroke: var(--color-rule); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .schematic .s-box  { fill: var(--color-surface); stroke: var(--color-rule); stroke-width: 1.5; }
+  .schematic .s-dot  { fill: var(--color-rule); stroke: none; }
+  .schematic .s-wash { fill: var(--color-accent-wash); stroke: none; }
+
+  /* The single accent element per diagram (defined last so it wins). */
+  .schematic .s-line.s-accent,
+  .schematic .s-box.s-accent { stroke: var(--color-accent); }
+  .schematic .s-dot.s-accent { fill: var(--color-accent); }
+
+  /* Labels: JetBrains Mono, 10px, uppercase, letter-spaced, muted. */
+  .schematic text {
+    fill: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Entrance motion (Design.md §3.6): opacity + ≤16px Y translate. Progressive —
+   the hidden state is only applied once JS adds `.anim` to <html> AND the user
+   hasn't requested reduced motion. With JS off, or reduced motion on, content
+   renders visible and static.
+--------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  html.anim .reveal { opacity: 0; transform: translateY(16px); }
+  html.anim .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Print: flat black-on-white, no forced full-height panels, links resolved.
+--------------------------------------------------------------------------- */
+@media print {
+  html { background: #fff; color: #000; }
+  section { min-height: 0 !important; break-inside: avoid; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  header[class*="sticky"] { position: static !important; }
+  a { color: #000; text-decoration: underline; }
+  /* Spell out non-obvious link targets on paper. */
+  main a[href^="http"]::after,
+  main a[href$=".pdf"]::after { content: " (" attr(href) ")"; font-weight: 400; }
+}
