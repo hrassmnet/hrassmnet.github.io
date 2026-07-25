@@ -1,27 +1,30 @@
 ---
-// 05 · Healthcare Market Access. Accent = the decision: the access boundary —
-// the classification split that separates constrained from enabled markets.
+// 05 · RSS Alert Bot. Accent = the decision: Match (does this item match my
+// keyword categories?). Telegram is just delivery, so it stays grey.
 ---
 <svg class="schematic" viewBox="0 0 300 210" role="img"
-  aria-label="Markets cluster into two groups split by an access boundary — the decision">
-  <text x="12" y="20">05 · Market Access</text>
+  aria-label="Eighteen feeds matched against keywords — the decision — then relevant items sent to Telegram">
+  <text x="12" y="20">05 · RSS Alerts</text>
+  <text x="40" y="48" text-anchor="start">18 Feeds</text>
 
-  <circle class="s-dot" cx="56" cy="92" r="5" />
-  <circle class="s-dot" cx="90" cy="72" r="5" />
-  <circle class="s-dot" cx="70" cy="122" r="5" />
-  <circle class="s-dot" cx="108" cy="104" r="5" />
-  <circle class="s-dot" cx="62" cy="152" r="5" />
-  <circle class="s-dot" cx="100" cy="146" r="5" />
+  <circle class="s-dot" cx="44" cy="66" r="3" />
+  <circle class="s-dot" cx="44" cy="92" r="3" />
+  <circle class="s-dot" cx="44" cy="118" r="3" />
+  <circle class="s-dot" cx="44" cy="144" r="3" />
+  <circle class="s-dot" cx="44" cy="170" r="3" />
 
-  <circle class="s-dot" cx="196" cy="84" r="5" />
-  <circle class="s-dot" cx="232" cy="68" r="5" />
-  <circle class="s-dot" cx="210" cy="118" r="5" />
-  <circle class="s-dot" cx="248" cy="102" r="5" />
-  <circle class="s-dot" cx="202" cy="150" r="5" />
-  <circle class="s-dot" cx="240" cy="146" r="5" />
+  <line class="s-line" x1="50" y1="66" x2="140" y2="108" />
+  <line class="s-line" x1="50" y1="92" x2="140" y2="112" />
+  <line class="s-line" x1="50" y1="118" x2="140" y2="116" />
+  <line class="s-line" x1="50" y1="144" x2="140" y2="120" />
+  <line class="s-line" x1="50" y1="170" x2="140" y2="124" />
 
-  <line class="s-line s-accent" x1="150" y1="46" x2="150" y2="170" stroke-dasharray="4 5" />
+  <rect class="s-box s-accent" x="140" y="96" width="66" height="40" rx="2" />
+  <text x="173" y="120" text-anchor="middle">Match</text>
 
-  <text x="80" y="196" text-anchor="middle">Access-constrained</text>
-  <text x="224" y="196" text-anchor="middle">Access-enabled</text>
+  <line class="s-line" x1="206" y1="116" x2="224" y2="116" />
+  <polyline class="s-line" points="218,112 224,116 218,120" />
+
+  <rect class="s-box" x="224" y="98" width="68" height="36" rx="2" />
+  <text x="258" y="120" text-anchor="middle">Telegram</text>
 </svg>

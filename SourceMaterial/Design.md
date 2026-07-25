@@ -243,8 +243,8 @@ Persistent minimal header with a link back to `/`.
 Three groups, hairline-separated, each with a mono section label:
 
 **EUROCONTROL** — cards 01, 02, 03
-**PERSONAL** — cards 04, 06
-**ACADEMIC** — card 05
+**PERSONAL** — cards 04, 05
+**ACADEMIC** — card 06
 
 ### Card anatomy
 
@@ -325,7 +325,20 @@ Claude Code · Obsidian · Markdown
 
 ---
 
-**05 — Healthcare Market Access**
+**05 — RSS Alert Bot**
+
+Runs itself every day on GitHub Actions. Checks around 18 feeds across AI
+research, defence, aerospace and Power Platform, matches them against keyword
+categories I set, and sends anything relevant to my Telegram.
+
+Plain Python, no dependencies. The first run just records what's already there
+so it doesn't dump months of old articles onto my phone at once.
+
+`GitHub → github.com/hrassmnet/news-alert` · Python · GitHub Actions
+
+---
+
+**06 — Healthcare Market Access**
 
 Hackathon case for Bayer. They're launching a therapy across European markets
 where pricing rules, reimbursement decisions and approval timelines vary by
@@ -341,19 +354,6 @@ The recommendation was to sequence launches by access rather than market size,
 and price after access is won rather than before.
 
 `Full analysis (PDF)` · Python · pandas · scikit-learn · statsmodels
-
----
-
-**06 — RSS Alert Bot**
-
-Runs itself every day on GitHub Actions. Checks around 18 feeds across AI
-research, defence, aerospace and Power Platform, matches them against keyword
-categories I set, and sends anything relevant to my Telegram.
-
-Plain Python, no dependencies. The first run just records what's already there
-so it doesn't dump months of old articles onto my phone at once.
-
-`GitHub → github.com/hrassmnet/news-alert` · Python · GitHub Actions
 
 ---
 

@@ -56,15 +56,15 @@ const contact = [
     />
   </head>
   <body>
-    <main class="mx-auto max-w-[1120px] px-6 md:px-12">
+    <main class="mx-auto max-w-[1280px] px-6 md:px-12">
 
       <!-- 01 · HERO ------------------------------------------------------ -->
-      <section class="grid min-h-screen grid-cols-[64px_1fr] md:grid-cols-[128px_1fr]">
+      <section class="grid min-h-[72vh] grid-cols-[64px_1fr] md:grid-cols-[128px_1fr]">
         <div class="flex flex-col items-center gap-6 border-r border-rule pt-24 md:pt-32">
           <span class="font-mono text-h2 leading-none text-text-muted tabular-nums">01</span>
           <span class="label [writing-mode:vertical-rl]">Identity</span>
         </div>
-        <div class="flex flex-col justify-center py-24 pl-6 md:py-32 md:pl-12">
+        <div class="flex flex-col justify-center py-24 pl-6 md:py-32 md:pl-8">
           <h1 class="text-display-l">Jack Bates</h1>
           <p class="mt-6 font-mono text-small text-text-muted">
             Business Information Systems — University of Galway
@@ -74,11 +74,11 @@ const contact = [
 
       <!-- 02 · JOURNEY --------------------------------------------------- -->
       <section class="grid grid-cols-[64px_1fr] border-t border-rule md:grid-cols-[128px_1fr]">
-        <div class="flex flex-col items-center gap-6 border-r border-rule pt-24 md:pt-32">
+        <div class="flex flex-col items-center gap-6 border-r border-rule pt-16 md:pt-24">
           <span class="font-mono text-h2 leading-none text-text-muted tabular-nums">02</span>
           <span class="label [writing-mode:vertical-rl]">Journey</span>
         </div>
-        <div class="py-24 pl-6 md:py-32 md:pl-12">
+        <div class="py-16 pl-6 md:py-24 md:pl-8">
           <h2 class="text-display-l">The route so far</h2>
 
           <ol class="mt-16 grid gap-y-12 md:grid-cols-4 md:gap-x-6">
@@ -108,7 +108,7 @@ const contact = [
           <span class="font-mono text-h2 leading-none text-text-muted tabular-nums">03</span>
           <span class="label [writing-mode:vertical-rl]">Experience</span>
         </div>
-        <div class="py-24 pl-6 md:py-32 md:pl-12">
+        <div class="py-24 pl-6 md:py-32 md:pl-8">
           <div class="flex flex-wrap items-baseline justify-between gap-4">
             <span class="label">EUROCONTROL · Brussels</span>
             <span class="font-mono text-small text-text-muted">Apr–Aug 2026</span>
@@ -122,19 +122,19 @@ const contact = [
       </section>
 
       <!-- 04 · PROJECTS DOOR --------------------------------------------- -->
-      <section class="grid min-h-screen grid-cols-[64px_1fr] border-t border-rule md:grid-cols-[128px_1fr]">
+      <section class="grid min-h-[72vh] grid-cols-[64px_1fr] border-t border-rule md:grid-cols-[128px_1fr]">
         <div class="flex flex-col items-center gap-6 border-r border-rule pt-24 md:pt-32">
           <span class="font-mono text-h2 leading-none text-text-muted tabular-nums">04</span>
           <span class="label [writing-mode:vertical-rl]">Projects</span>
         </div>
-        <div class="flex flex-col justify-center py-24 pl-6 md:py-32 md:pl-12">
+        <div class="flex flex-col justify-center py-24 pl-6 md:py-32 md:pl-8">
           <span class="label">The substance</span>
           <a
             href="/projects"
-            class="group mt-6 inline-flex items-baseline gap-6 text-display-xl text-text transition-colors hover:text-accent"
+            class="group mt-6 inline-flex items-baseline gap-4 text-display-l text-text transition-colors hover:text-accent md:gap-6 md:text-display-xl"
           >
             Projects
-            <span class="text-display-l text-accent transition-transform group-hover:translate-x-2" aria-hidden="true">→</span>
+            <span class="text-h2 text-accent transition-transform group-hover:translate-x-2 md:text-display-l" aria-hidden="true">→</span>
           </a>
           <p class="font-mono text-small text-text-muted mt-8">
             06 cards · EUROCONTROL / PERSONAL / ACADEMIC
@@ -144,15 +144,17 @@ const contact = [
 
       <!-- 05 · ACHIEVEMENTS ---------------------------------------------- -->
       <section class="grid grid-cols-[64px_1fr] border-t border-rule md:grid-cols-[128px_1fr]">
-        <div class="flex flex-col items-center gap-6 border-r border-rule pt-24 md:pt-32">
+        <div class="flex flex-col items-center gap-6 border-r border-rule pt-16 md:pt-24">
           <span class="font-mono text-h2 leading-none text-text-muted tabular-nums">05</span>
           <span class="label [writing-mode:vertical-rl]">Achievements</span>
         </div>
-        <div class="py-24 pl-6 md:py-32 md:pl-12">
+        <div class="py-16 pl-6 md:py-24 md:pl-8">
           <h2 class="text-display-l">Supporting evidence</h2>
-          <dl class="mt-16 max-w-measure border-b border-rule">
+          <!-- Not prose: fills the content column. Two columns on wide screens
+               so the ledger uses the width instead of a 68ch strip. -->
+          <dl class="mt-16 lg:columns-2 lg:gap-x-16">
             {achievements.map((a) => (
-              <div class="flex items-baseline justify-between gap-6 border-t border-rule py-4">
+              <div class="flex items-baseline justify-between gap-6 break-inside-avoid border-t border-rule py-4">
                 <dt class="font-mono text-small text-text">{a.title}</dt>
                 <dd class="font-mono text-small text-text-muted text-right">{a.by}</dd>
               </div>
@@ -163,11 +165,11 @@ const contact = [
 
       <!-- 06 · INTERESTS ------------------------------------------------- -->
       <section class="grid grid-cols-[64px_1fr] border-t border-rule md:grid-cols-[128px_1fr]">
-        <div class="flex flex-col items-center gap-6 border-r border-rule pt-24 md:pt-32">
+        <div class="flex flex-col items-center gap-6 border-r border-rule pt-16 md:pt-24">
           <span class="font-mono text-h2 leading-none text-text-muted tabular-nums">06</span>
           <span class="label [writing-mode:vertical-rl]">Interests</span>
         </div>
-        <div class="py-24 pl-6 md:py-32 md:pl-12">
+        <div class="py-16 pl-6 md:py-24 md:pl-8">
           <h2 class="text-display-l">Interests</h2>
           <!-- 3-up at/above 900px (the site's stack breakpoint), stacked below. -->
           <div class="mt-16 grid gap-6 min-[900px]:grid-cols-3">
@@ -193,16 +195,17 @@ const contact = [
 
       <!-- 07 · CONTACT / FOOTER ------------------------------------------ -->
       <section class="grid grid-cols-[64px_1fr] border-t border-rule md:grid-cols-[128px_1fr]">
-        <div class="flex flex-col items-center gap-6 border-r border-rule pt-24 md:pt-32">
+        <div class="flex flex-col items-center gap-6 border-r border-rule pt-16 md:pt-24">
           <span class="font-mono text-h2 leading-none text-text-muted tabular-nums">07</span>
           <span class="label [writing-mode:vertical-rl]">Contact</span>
         </div>
-        <div class="py-24 pl-6 md:py-32 md:pl-12">
+        <div class="py-16 pl-6 md:py-24 md:pl-8">
           <h2 class="text-display-l">Get in touch</h2>
 
-          <dl class="mt-16 max-w-measure border-b border-rule">
+          <!-- Not prose: a three-up readout on wide screens, stacked below. -->
+          <dl class="mt-16 grid gap-x-16 lg:grid-cols-3">
             {contact.map((c) => (
-              <div class="flex items-baseline justify-between gap-6 border-t border-rule py-5">
+              <div class="flex flex-col gap-2 border-t border-rule py-5">
                 <dt class="label">{c.k}</dt>
                 <dd>
                   <a

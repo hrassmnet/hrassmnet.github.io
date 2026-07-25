@@ -13,7 +13,7 @@ const schematics = { '01': Sch01, '02': Sch02, '03': Sch03, '04': Sch04, '05': S
 
 // Verbatim project copy — do NOT rewrite, improve, or add adjectives (per brief).
 // Indices are stable IDs, not positional (Design.md §6): EUROCONTROL 01·02·03,
-// PERSONAL 04·06, ACADEMIC 05.
+// PERSONAL 04·05, ACADEMIC 06.
 const groups = [
   {
     label: 'EUROCONTROL',
@@ -64,7 +64,7 @@ const groups = [
         stack: ['Claude Code', 'Obsidian', 'Markdown'],
       },
       {
-        id: '06',
+        id: '05',
         title: 'RSS Alert Bot',
         body: [
           'Runs itself every day on GitHub Actions. Checks around 18 feeds across AI research, defence, aerospace and Power Platform, matches them against keyword categories I set, and sends anything relevant to my Telegram.',
@@ -79,7 +79,7 @@ const groups = [
     label: 'ACADEMIC',
     cards: [
       {
-        id: '05',
+        id: '06',
         title: 'Healthcare Market Access',
         body: [
           'Hackathon case for Bayer. They’re launching a therapy across European markets where pricing rules, reimbursement decisions and approval timelines vary by country. The question was where to focus to maximise market share and sales.',
@@ -110,13 +110,13 @@ const groups = [
   <body>
     <!-- Persistent minimal header -->
     <header class="sticky top-0 z-10 border-b border-rule bg-bg">
-      <div class="mx-auto flex max-w-[1120px] items-baseline justify-between px-6 py-4 md:px-12">
+      <div class="mx-auto flex max-w-[1280px] items-baseline justify-between px-6 py-4 md:px-12">
         <span class="label">Jack Bates — Projects</span>
         <a href="/" class="font-mono text-small text-accent hover:underline">← Overview</a>
       </div>
     </header>
 
-    <main class="mx-auto max-w-[1120px] px-6 md:px-12">
+    <main class="mx-auto max-w-[1280px] px-6 md:px-12">
 
       {groups.map((group) => (
         <section class="pt-24 first:pt-16">
