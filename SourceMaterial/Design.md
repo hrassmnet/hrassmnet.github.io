@@ -15,7 +15,7 @@ Two pages, one identity.
 
 | Route | Job | Layout |
 |---|---|---|
-| `/` | Overview. Cinematic, short on text. Makes someone want to click through. | **Horizontal** scroll |
+| `/` | Overview. Cinematic, short on text. Makes someone want to click through. | **Vertical** scroll |
 | `/projects` | The substance. Six project cards. Where someone actually reads. | **Vertical** scroll |
 
 The contrast between the two is deliberate. The overview performs; the projects
@@ -100,24 +100,10 @@ Library: **GSAP + ScrollTrigger**. No other animation library.
 
 1. **Never hijack scroll.** No custom scroll velocity, no smooth-scroll libraries
    overriding native behaviour. The scrollbar must stay real.
-2. **Horizontal = pinned translate.** On `/`, ScrollTrigger pins the track and
-   translates it on the X axis while the user scrolls normally. User scrolls
-   down, world moves sideways. Native physics, works with wheel, trackpad,
-   keyboard and touch.
-3. **`prefers-reduced-motion: reduce`** disables the pin entirely and renders
-   panels as a normal vertical stack. Non-negotiable.
-4. **Below 900px viewport width**, the horizontal track collapses to a vertical
-   stack. Pinned sideways scroll on a phone is unpleasant. Build this from the
-   start, don't retrofit.
-5. Durations `0.4s`–`0.8s`, easing `power2.out`. Nothing snaps.
-6. Entrance animations: opacity + small Y translate (max 16px). Nothing flies in.
-
-### The one "breathing" element
-
-The hero contains a live schematic of the ITSD email pipeline — nodes connected
-left to right (`INBOX → PRE-FILTER → CLASSIFY → KB SEARCH → ACTION`), with a
-slow pulse travelling along the path on a loop. Subtle. It should read as an
-instrument that's on, not as an animation playing.
+2. **`prefers-reduced-motion: reduce`** disables entrance animation entirely and
+   renders panels static. Non-negotiable.
+3. Durations `0.4s`–`0.8s`, easing `power2.out`. Nothing snaps.
+4. Entrance animations: opacity + small Y translate (max 16px). Nothing flies in.
 
 ---
 
@@ -136,7 +122,7 @@ must all look like one family.
 
 ---
 
-## 5. Page: `/` (overview, horizontal)
+## 5. Page: `/` (overview, vertical)
 ## 5a. Creative latitude
 
 Sections 2, 3, 7 and 9 are constraints — palette, type, motion physics,
@@ -168,24 +154,23 @@ For each panel, propose 2–3 distinct compositional directions in a short
 written description before building any of them. I'll pick one. Do not
 build a single option and ask for feedback — I'm better at choosing
 between things than at describing what I want.
-Panels left to right:
+Panels top to bottom:
 
 **01 — Hero**
 ```
 JACK BATES
 Business Information Systems — University of Galway
+Change is inevitable. Progress isn't.
 ```
-Plus the live pipeline schematic. Nothing else. No tagline, no positioning
-statement, no metrics.
+Name, affiliation line, and the site's closing line echoed quietly beneath,
+one step up in weight. No metrics, no positioning statement.
 
 **02 — Journey**
 Leaving Cert → University of Galway → TBS Education Barcelona → `?`
 
-Rendered as a horizontal line that draws itself as the user travels. Year
-markers in mono. The right-hand edge terminates in an unlabelled `?` — the
-future is deliberately open. This panel is where the horizontal gesture earns
-itself: the content is linear, so moving sideways is correct rather than
-imposed.
+Rendered as a horizontal timeline within the vertical page — a line the eye
+travels left to right across the panel. Year markers in mono. The right-hand
+edge terminates in an unlabelled `?` — the future is deliberately open.
 
 **03 — Experience**
 EUROCONTROL, Brussels — Power Platform & AI Solutions Engineer (Skyline
@@ -200,11 +185,11 @@ moment, not a nav item. Keep the label plain — "Projects".
 **05 — Achievements**
 Compact. Mono list, hairline-separated, no cards, no badges, no icons:
 - ISO 8000 Master Data Quality Manager — ECCMA
-- Model Context Protocol — Anthropic
-- AI Fluency — Anthropic
-- Claude 101 — Anthropic
-- First Class Honours — Y1 71%, Y2 75%
+- Enhance agents with autonomous capabilities — Microsoft Applied Skills
+- First Class Honours — Y1 71% · Y2 75%
 - Academic Scholarship — Y1 & Y2
+- Leaving Cert — Kearney, Pat Carty & Offaly Historical Society Awards — 601 points
+- SAP Design Thinking Challenge — 4-person team, circular-economy platform design
 
 Deliberately understated. The projects carry the weight; this is supporting
 evidence.
@@ -214,7 +199,7 @@ evidence.
 Three items, presented as a triptych. Word + image only. NO prose,
 NO explanatory sentences, NO node strips.
 
-- HISTORY — image, WW1 / early-20th-century archive aesthetic
+- HISTORY — image, Augustus of Prima Porta
 - CYBERNETICS — image or icon, mechanical/systems aesthetic
 - PHILOSOPHY — The Creation of Adam, detail of the two hands
 
@@ -382,13 +367,11 @@ Do these as separate slices. Commit after each. Don't jump ahead.
    colour swatches. Nothing else. Get this approved first.
 2. **`/projects`** — vertical, static, all six cards, no motion, no schematics
    yet. This page carries the content, so it gets built early.
-3. **`/` structure** — all seven panels laid out vertically, no horizontal
-   behaviour. Content and hierarchy only.
-4. **Horizontal pinning** — convert `/` to the pinned translate. Mobile fallback
-   and reduced-motion in the same slice.
-5. **Schematics** — the six card diagrams, the hero pipeline, the two interest
-   diagrams. One at a time, same conventions.
-6. **Polish** — favicon, meta tags, OG image, print stylesheet, 375px pass,
+3. **`/` structure** — all seven panels laid out vertically. Content and
+   hierarchy only.
+4. **Schematics** — the six card diagrams, the two interest diagrams. One at
+   a time, same conventions.
+5. **Polish** — favicon, meta tags, OG image, print stylesheet, 375px pass,
    Lighthouse check.
 
 ---
