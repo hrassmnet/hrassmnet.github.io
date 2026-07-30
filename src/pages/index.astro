@@ -20,12 +20,11 @@ const journey = [
 
 const achievements = [
   { title: 'ISO 8000 Master Data Quality Manager',      by: 'ECCMA' },
-  { title: 'Model Context Protocol',                    by: 'Anthropic' },
-  { title: 'AI Fluency',                                by: 'Anthropic' },
-  { title: 'Claude 101',                                by: 'Anthropic' },
   { title: 'Enhance agents with autonomous capabilities', by: 'Microsoft Applied Skills' },
   { title: 'First Class Honours',                       by: 'Y1 71% · Y2 75%' },
   { title: 'Academic Scholarship',                      by: 'Y1 & Y2' },
+  { title: 'Leaving Cert — Kearney, Pat Carty & Offaly Historical Society Awards', by: '601 points' },
+  { title: 'SAP Design Thinking Challenge',             by: '4-person team, circular-economy platform design' },
 ];
 
 // Triptych — word + image only (Design.md §06). Identical treatment across
@@ -75,6 +74,9 @@ const contact = [
           <p class="mt-6 font-mono text-small text-text-muted">
             Business Information Systems — University of Galway
           </p>
+          <p class="mt-4 font-mono text-small font-medium text-text">
+            Change is inevitable. Progress isn't.
+          </p>
         </div>
       </section>
 
@@ -97,7 +99,7 @@ const contact = [
                   <>
                     <div class="font-mono text-small text-text-muted tabular-nums">{s.year}</div>
                     <div class="text-h3 mt-3">{s.name}</div>
-                    <div class="mt-1 space-y-0.5">
+                    <div class="mt-1 space-y-1">
                       {s.sub.map((l) => <div class="text-small text-text-muted">{l}</div>)}
                     </div>
                   </>
@@ -120,7 +122,7 @@ const contact = [
             <span class="font-mono text-small text-text-muted">Apr–Aug 2026</span>
           </div>
           <h2 class="text-display-l mt-8">Power Platform &amp; AI Solutions Engineer</h2>
-          <p class="text-h2 text-text mt-10 max-w-measure">
+          <p class="text-h2 text-text mt-12 max-w-measure">
             On the Skyline traineeship I designed and shipped a suite of AI agents for
             EUROCONTROL's Network Management Directorate, built on custom MCP connectors and tools.
           </p>
@@ -213,7 +215,7 @@ const contact = [
           <!-- Not prose: a three-up readout on wide screens, stacked below. -->
           <dl class="mt-16 grid gap-x-16 lg:grid-cols-3">
             {contact.map((c) => (
-              <div class="flex flex-col gap-2 border-t border-rule py-5">
+              <div class="flex flex-col gap-2 border-t border-rule py-6">
                 <dt class="label">{c.k}</dt>
                 <dd>
                   <a
