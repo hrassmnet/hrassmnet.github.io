@@ -1,30 +1,44 @@
 ---
-// 05 · RSS Alert Bot. Accent = the decision: Match (does this item match my
-// keyword categories?). Telegram is just delivery, so it stays grey.
+// 05 · Writing Voice Fine-Tune. A frozen base model and a small hand-built
+// dataset converge into a LoRA adapter, which a held-out evaluation splits into
+// two outcomes. Accent = the decision: Held-out Eval — the split verdict (tone
+// transferred, facts didn't) is what the card is actually about. The base box
+// is dashed because its weights never move; the adapter is the only thing
+// trained, so it stays a plain box.
 ---
 <svg class="schematic" viewBox="0 0 300 210" role="img"
-  aria-label="Eighteen feeds matched against keywords — the decision — then relevant items sent to Telegram">
-  <text x="12" y="20">05 · RSS Alerts</text>
-  <text x="40" y="48" text-anchor="start">18 Feeds</text>
+  aria-label="A frozen base model and 51 hand-built examples converge into a LoRA adapter, then a held-out evaluation — the decision — splits into two outcomes: tone transferred, facts not retained">
+  <text x="12" y="20">05 · Writing Voice</text>
 
-  <circle class="s-dot" cx="44" cy="66" r="3" />
-  <circle class="s-dot" cx="44" cy="92" r="3" />
-  <circle class="s-dot" cx="44" cy="118" r="3" />
-  <circle class="s-dot" cx="44" cy="144" r="3" />
-  <circle class="s-dot" cx="44" cy="170" r="3" />
+  <!-- Inputs: weights that don't move (dashed) + the hand-built dataset -->
+  <rect class="s-box" x="12" y="36" width="124" height="28" rx="2" stroke-dasharray="3 4" />
+  <text x="74" y="54" text-anchor="middle">Base (frozen)</text>
+  <rect class="s-box" x="164" y="36" width="124" height="28" rx="2" />
+  <text x="226" y="54" text-anchor="middle">51 Examples</text>
 
-  <line class="s-line" x1="50" y1="66" x2="140" y2="108" />
-  <line class="s-line" x1="50" y1="92" x2="140" y2="112" />
-  <line class="s-line" x1="50" y1="118" x2="140" y2="116" />
-  <line class="s-line" x1="50" y1="144" x2="140" y2="120" />
-  <line class="s-line" x1="50" y1="170" x2="140" y2="124" />
+  <!-- Both converge on the adapter -->
+  <polyline class="s-line" points="74,64 74,76 150,76" />
+  <polyline class="s-line" points="226,64 226,76 150,76" />
+  <line class="s-line" x1="150" y1="76" x2="150" y2="86" />
+  <polyline class="s-line" points="146,80 150,86 154,80" />
 
-  <rect class="s-box s-accent" x="140" y="96" width="66" height="40" rx="2" />
-  <text x="173" y="120" text-anchor="middle">Match</text>
+  <rect class="s-box" x="94" y="86" width="112" height="28" rx="2" />
+  <text x="150" y="104" text-anchor="middle">LoRA Adapter</text>
 
-  <line class="s-line" x1="206" y1="116" x2="224" y2="116" />
-  <polyline class="s-line" points="218,112 224,116 218,120" />
+  <line class="s-line" x1="150" y1="114" x2="150" y2="130" />
+  <polyline class="s-line" points="146,124 150,130 154,124" />
 
-  <rect class="s-box" x="224" y="98" width="68" height="36" rx="2" />
-  <text x="258" y="120" text-anchor="middle">Telegram</text>
+  <rect class="s-box s-accent" x="82" y="130" width="136" height="28" rx="2" />
+  <text x="150" y="148" text-anchor="middle">Held-out Eval</text>
+
+  <!-- The split verdict -->
+  <line class="s-line" x1="150" y1="158" x2="150" y2="168" />
+  <line class="s-line" x1="72" y1="168" x2="228" y2="168" />
+  <line class="s-line" x1="72" y1="168" x2="72" y2="178" />
+  <polyline class="s-line" points="68,172 72,178 76,172" />
+  <line class="s-line" x1="228" y1="168" x2="228" y2="178" />
+  <polyline class="s-line" points="224,172 228,178 232,172" />
+
+  <text x="72" y="194" text-anchor="middle">Tone transferred</text>
+  <text x="228" y="194" text-anchor="middle">Facts not retained</text>
 </svg>

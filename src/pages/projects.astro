@@ -65,13 +65,16 @@ const groups = [
       },
       {
         id: '05',
-        title: 'RSS Alert Bot',
+        title: 'Writing Voice Fine-Tune',
         body: [
-          'Runs itself every day on GitHub Actions. Checks around 18 feeds across AI research, defence, aerospace and Power Platform, matches them against keyword categories I set, and sends anything relevant to my Telegram.',
+          'Fine-tuned a small open-weight model on 51 examples of my own writing to see whether a LoRA on that little data could pick up tone, structure and register. Built the dataset by hand from real emails, technical notes and essays rather than generating it, then tested against the base model on three prompts held out of training.',
         ],
-        decision: 'Plain Python, no dependencies. The first run just records what’s already there so it doesn’t dump months of old articles onto my phone at once.',
-        metrics: [{ text: 'GitHub → github.com/hrassmnet/news-alert', href: 'https://github.com/hrassmnet/news-alert', external: true }],
-        stack: ['Python', 'GitHub Actions'],
+        decision: 'Style transferred, facts didn’t. The model took on the register convincingly but invented biographical details it had no way to hold at this scale — that’s a retrieval problem, not a training one. On a prompt unrelated to anything in the data it did worse than the base model it started from.',
+        metrics: [
+          { text: '51 examples · rank-32 LoRA' },
+          { text: 'GitHub → writing-voice-lora', href: 'https://github.com/hrassmnet/writing-voice-lora', external: true },
+        ],
+        stack: ['Unsloth', 'Llama-3.2-1B', 'LoRA', 'Google Colab'],
       },
     ],
   },
