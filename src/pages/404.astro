@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+import Seo from '../components/Seo.astro';
+---
+
+<html lang="en">
+  <head>
+    <Seo
+      title="Not found — Jack Bates"
+      description="That page doesn't exist."
+    />
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <header class="sticky top-0 z-10 border-b border-rule bg-bg">
+      <div class="mx-auto flex max-w-[1280px] items-baseline justify-between px-6 py-4 md:px-12">
+        <span class="label">Jack Bates — 404</span>
+        <a href="/" class="font-mono text-small text-accent hover:underline">← Overview</a>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-[1280px] px-6 md:px-12">
+      <section class="grid grid-cols-[64px_1fr] md:grid-cols-[128px_1fr]">
+        <div class="flex flex-col items-center gap-6 border-r border-text pt-16 md:pt-24">
+          <span class="font-mono text-h2 leading-none text-accent tabular-nums">404</span>
+          <span class="label [writing-mode:vertical-rl]">Not found</span>
+        </div>
+        <div class="py-16 pl-6 md:py-24 md:pl-8">
+          <h1 class="text-display-l">Nothing here</h1>
+          <p class="mt-6 max-w-measure text-body">
+            That address doesn't resolve to a page. It may have moved, or it may
+            never have existed.
+          </p>
+          <nav class="mt-12 flex flex-wrap gap-x-8 gap-y-3">
+            <a href="/" class="font-mono text-small text-accent hover:underline">Overview</a>
+            <a href="/projects" class="font-mono text-small text-accent hover:underline">Projects</a>
+            <a href="/cv.pdf" class="font-mono text-small text-accent hover:underline">CV (PDF)</a>
+            <a
+              href="https://github.com/hrassmnet"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-mono text-small text-accent hover:underline">GitHub</a
+            >
+          </nav>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

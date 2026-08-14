@@ -25,7 +25,7 @@ const groups = [
           'Continuous pipeline on the ITSD shared mailbox. Every incoming email gets classified, checked against the ServiceNow knowledge base, and then answered, ticketed, or handed to a human. Each decision is logged to SharePoint and surfaced in Power BI.',
         ],
         decision: 'The design problem was trust: cheap filters run before the agent so the expensive call only fires when it’s needed, and if the KB search wasn’t performed, confidence drops to LOW and a person takes over — regardless of how certain the model sounded.',
-        metrics: [{ text: '25,000+ emails in production' }],
+        metrics: [{ text: '25,000+ emails' }, { text: 'live in production' }],
         stack: ['Copilot Studio', 'Power Automate', 'ServiceNow', 'SharePoint', 'Power BI'],
       },
       {
