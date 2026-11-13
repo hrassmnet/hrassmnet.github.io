@@ -7,13 +7,14 @@ import Sch03 from '../components/schematics/Sch03.astro';
 import Sch04 from '../components/schematics/Sch04.astro';
 import Sch05 from '../components/schematics/Sch05.astro';
 import Sch06 from '../components/schematics/Sch06.astro';
+import Sch07 from '../components/schematics/Sch07.astro';
 
 // card id → its schematic component
-const schematics = { '01': Sch01, '02': Sch02, '03': Sch03, '04': Sch04, '05': Sch05, '06': Sch06 };
+const schematics = { '01': Sch01, '02': Sch02, '03': Sch03, '04': Sch04, '05': Sch05, '06': Sch06, '07': Sch07 };
 
 // Verbatim project copy — do NOT rewrite, improve, or add adjectives (per brief).
 // Indices are stable IDs, not positional (Design.md §6): EUROCONTROL 01·02·03,
-// PERSONAL 04·05, ACADEMIC 06.
+// PERSONAL 04·05, ACADEMIC 06·07.
 const groups = [
   {
     label: 'EUROCONTROL',
@@ -91,6 +92,18 @@ const groups = [
         decision: 'The recommendation was to sequence launches by access rather than market size, and price after access is won rather than before.',
         metrics: [{ text: 'Full analysis (PDF)', href: '/bayer-analysis.pdf', external: true }],
         stack: ['Python', 'pandas', 'scikit-learn', 'statsmodels'],
+      },
+      {
+        id: '07',
+        title: 'Outcome Endogeneity in Prediction Markets',
+        body: [
+          'To what extent do prediction markets influence the events they predict?',
+          'Prediction markets are usually read as neutral forecasters: the event is assumed to sit outside the market. This review challenged that assumption across 17 studies, using Soros’s theory of reflexivity as the lens.',
+          'The finding: the markets forecast well, but accuracy doesn’t establish neutrality. Direct outcome manipulation is mostly theoretical and price manipulation is short-lived. The stronger evidence of influence is on attention, on decisions that feed back into outcomes, and on how disputed outcomes get settled.',
+        ],
+        decision: 'The same question as the agent work, one layer up: when does a system become part of what it measures?',
+        metrics: [{ text: 'Systematic literature review · Group of five · Nov 2026' }],
+        stack: ['Systematic review', 'Okoli (2015)', 'Problematization', 'Reflexivity', 'Policy'],
       },
     ],
   },

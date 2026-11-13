@@ -24,7 +24,8 @@ const achievements = [
   { title: 'First Class Honours',                       by: 'Y1 71% · Y2 75%' },
   { title: 'Academic Scholarship',                      by: 'Y1 & Y2' },
   { title: 'Leaving Cert — Kearney, Pat Carty & Offaly Historical Society Awards', by: '601 points' },
-  { title: 'SAP Design Thinking Challenge',             by: '4-person team, circular-economy platform design' },
+  { title: 'Relay · Final Year Project, 2026–27',
+    note: "Tests whether a successor can actually apply what they've been handed before a handover is signed off." },
 ];
 
 // Triptych — word + image only (Design.md §06). Identical treatment across
@@ -147,7 +148,7 @@ const contact = [
             <span class="text-h2 text-accent transition-transform group-hover:translate-x-2 md:text-display-l" aria-hidden="true">→</span>
           </a>
           <p class="font-mono text-small text-text-muted mt-8">
-            06 cards · EUROCONTROL / PERSONAL / ACADEMIC
+            07 cards · EUROCONTROL / PERSONAL / ACADEMIC
           </p>
         </div>
       </section>
@@ -164,9 +165,12 @@ const contact = [
                so the ledger uses the width instead of a 68ch strip. -->
           <dl class="mt-16 lg:columns-2 lg:gap-x-16">
             {achievements.map((a) => (
-              <div class="flex items-baseline justify-between gap-6 break-inside-avoid border-t border-rule py-4">
-                <dt class="font-mono text-small text-text">{a.title}</dt>
-                <dd class="font-mono text-small text-text-muted text-right">{a.by}</dd>
+              <div class="break-inside-avoid border-t border-rule py-4">
+                <div class="flex items-baseline justify-between gap-6">
+                  <dt class="font-mono text-small text-text">{a.title}</dt>
+                  {a.by && <dd class="font-mono text-small text-text-muted text-right">{a.by}</dd>}
+                </div>
+                {a.note && <dd class="mt-2 max-w-measure font-mono text-small text-text-muted">{a.note}</dd>}
               </div>
             ))}
           </dl>

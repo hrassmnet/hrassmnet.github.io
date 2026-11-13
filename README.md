@@ -3,7 +3,7 @@
 Personal site — [hrassmnet.github.io](https://hrassmnet.github.io)
 
 Two pages. `/` is an overview: education, experience, achievements, contact.
-`/projects` is the work itself — six cards across three groups, each with the
+`/projects` is the work itself — seven cards across three groups, each with the
 design decision that shaped it and the stack it runs on.
 
 ## Projects covered
@@ -16,6 +16,7 @@ design decision that shaped it and the stack it runs on.
 | 04 | Personal Knowledge System | Agent-maintained Obsidian corpus |
 | 05 | Writing Voice Fine-Tune | Rank-32 LoRA on 51 examples — [repo](https://github.com/hrassmnet/writing-voice-lora) |
 | 06 | Healthcare Market Access | Classification, regression and clustering across twelve markets |
+| 07 | Outcome Endogeneity in Prediction Markets | Systematic review of 17 studies on whether prediction markets influence what they predict |
 
 Each card carries a hand-drawn SVG schematic (`src/components/schematics/`)
 rather than a screenshot, so the architecture is legible without the reader
